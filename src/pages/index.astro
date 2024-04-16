@@ -1,15 +1,67 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Button from "@components/ui/button.astro"
+import IconDocument from "@icons/IconDocument.astro"
+import IconSender from "@icons/IconSender.astro"
+import Layout from "../layouts/Layout.astro"
 ---
 
-<Layout 
->
+<Layout>
 	<main>
+		<section class="mx-auto max-w-screen-xl px-4 py-12">
+			<div class="flex items-center justify-between gap-4">
+				<div class="-mt-28">
+					<div class="flex flex-col gap-2">
+						<span
+							class:list={[
+								"w-fit text-2xl font-medium",
+								"bg-gradient-to-r from-[#859BEF] to-[#2B7BF4]",
+								"bg-clip-text text-transparent",
+							]}
+						>
+							Hi, I am
+						</span>
+						<h1
+							class:list={[
+								"bg-clip-text text-transparent",
+								"bg-[radial-gradient(at_left_top,_#FFF,_#CCD3E7)]",
+							]}
+						>
+							ALFREDO ALESSANDRO
+						</h1>
+						<span
+							class:list={[
+								"w-fit text-4xl font-medium",
+								"bg-[linear-gradient(90deg,_#BABABA_0%,_#FFF_20%,_#2E8CFA_75%,_#B234ED_100%)]",
+								"bg-clip-text leading-[5vh] text-transparent",
+							]}
+						>
+							Web Developer & UI Designer
+						</span>
+					</div>
+					<div class="mt-12 flex items-center gap-4">
+						<Button class="group">
+							DOWNLOAD CV
+							<IconDocument slot="endContent" />
+						</Button>
+						<Button variant="bordered">
+							CONTACT ME
+							<IconSender slot="endContent" />
+						</Button>
+					</div>
+				</div>
 
+				<img
+					class="mask-gradient h-[445px] w-[425px] rounded-3xl object-cover"
+					alt="alfredo-alessandro-avatar"
+					src="/mi-photo.png"
+				/>
+			</div>
+		</section>
 	</main>
 </Layout>
 
 <style>
-	
+	.mask-gradient {
+		mask-image: linear-gradient(180deg, #000000, rgba(0, 0, 0, 0));
+	}
 </style>
