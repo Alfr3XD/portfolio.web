@@ -1,0 +1,67 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"button"> {
+	color?: Color
+	variant?: Variant
+}
+
+type Color = "primary"
+type Variant = "default" | "bordered"
+
+// eslint-disable-next-line unused-imports/no-unused-vars
+const { class: classes, color, variant, ...rest } = Astro.props
+
+const Variants = {
+	default: {
+		wrapper: "btn",
+		background: "",
+	},
+	bordered: {
+		wrapper:
+			"border-[2.5px] border-[#399FFE] text-[#399FFE] hover:text-white hover:border-transparent transition-[text-color]",
+		background: "group-hover:w-full w-0 ",
+	},
+}
+---
+
+<button
+	class:list={[
+		classes,
+		"duration-300",
+		"rounded-2xl px-6 py-5",
+		"group relative overflow-hidden",
+		"active:scale-95 active:duration-0",
+		Variants[variant ?? "default"].wrapper,
+	]}
+	{...rest}
+>
+	<div
+		class:list={[
+			"bgch absolute inset-0 size-full opacity-0 duration-300 group-hover:opacity-100",
+			Variants[variant ?? "default"].background,
+		]}
+	>
+	</div>
+
+	<div class:list={["relative translate-x-0", "flex items-center gap-6"]}>
+		<span class="font-bold">
+			<slot />
+		</span>
+		<slot name="endContent" />
+	</div>
+</button>
+
+<style>
+	.btn {
+		background: radial-gradient(at left top, #476be8, #5634df);
+	}
+
+	.btn:hover {
+		box-shadow: 0 0px 20px 0px rgb(48 121 231 / 0.25);
+	}
+
+	.bgch {
+		background: radial-gradient(at left top, #0066ff, #5586cf);
+	}
+</style>
